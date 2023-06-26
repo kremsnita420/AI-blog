@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.btn-green {
+		@apply block w-full px-4 py-2 font-bold tracking-wider text-center text-white uppercase transition-colors bg-green-500 rounded-md cursor-pointer hover:bg-green-600;
+	}
+}
