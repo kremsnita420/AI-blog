@@ -2,8 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	body {
+		scrollbar-color: rgb(230, 149, 122) transparent;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply my-6 font-bold font-heading;
+	}
+
+	h1 {
+		@apply text-4xl;
+	}
+
+	h2 {
+		@apply text-3xl;
+	}
+
+	h3 {
+		@apply text-2xl;
+	}
+
+	h4 {
+		@apply text-xl;
+	}
+
+	h5 {
+		@apply text-lg;
+	}
+
+	p {
+		@apply my-2;
+	}
+
+	ul {
+		list-style-type: disc;
+	}
+
+	ol {
+		list-style-type: decimal;
+	}
+
+	ul,
+	ol {
+		@apply my-4;
+	}
+
+	li {
+		@apply my-2;
+	}
+
+	::-webkit-scrollbar {
+		width: 0.5em;
+	}
+	::-webkit-scrollbar-track {
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	}
+	::-webkit-scrollbar-thumb {
+		background: rgb(230, 149, 122);
+		border-radius: 50em;
+		cursor: pointer;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		opacity: 0.5;
+	}
+}
+
 @layer components {
 	.btn-green {
 		@apply block w-full px-4 py-2 font-bold tracking-wider text-center text-white uppercase transition-colors bg-green-500 rounded-md cursor-pointer hover:bg-green-600;
+	}
+
+	.text-area {
+		@apply block w-full px-4 py-2 my-2 border rounded-sm resize-none border-slate-500;
+	}
+
+	.title-bg-gray {
+		@apply p-2 mt-6 text-sm font-bold rounded-sm bg-stone-200;
 	}
 }

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../Logo/Logo';
 
-function AppLayout({ children }) {
+function AppLayout({ children, availableTokens, posts, postId }) {
 	const { user } = useUser();
 
 	return (
@@ -18,11 +18,19 @@ function AppLayout({ children }) {
 					</Link>
 					<Link href='/token-topup' className='block mt-2 text-center '>
 						<FontAwesomeIcon icon={faCoins} className='text-yellow-500' />
-						<span className='pl-1'>0</span> tokens available
+						<span className='pl-1'>{availableTokens}</span> tokens available
 					</Link>
 				</div>
-				<div className='flex-1 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800'>
-					List of posts
+				<div className='flex-1 px-4 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800'>
+					{posts.map((post) => (
+						<Link
+							key={post._id}
+							href={`/post/${post._id}`}
+							className={`border first-letter:uppercase border-white/0 block py-1 px-2 my-1 overflow-hidden rounded-sm cursor-pointer whitespace-nowrap bg-white/10 
+							${postId === post._id ? 'bg-white/20 border-white/100' : ''}`}>
+							{post.topic}
+						</Link>
+					))}
 				</div>
 				<div className='flex items-center h-20 gap-2 px-2 border-t bg-cyan-800 border-t-black/50'>
 					{user ? (
@@ -47,7 +55,7 @@ function AppLayout({ children }) {
 					)}
 				</div>
 			</div>
-			<div className=''>{children}</div>
+			{children}
 		</div>
 	);
 }
