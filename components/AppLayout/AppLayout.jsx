@@ -22,15 +22,16 @@ function AppLayout({ children, availableTokens, posts, postId }) {
 					</Link>
 				</div>
 				<div className='flex-1 px-4 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800'>
-					{posts.map((post) => (
-						<Link
-							key={post._id}
-							href={`/post/${post._id}`}
-							className={`border first-letter:uppercase border-white/0 block py-1 px-2 my-1 overflow-hidden rounded-sm cursor-pointer whitespace-nowrap bg-white/10 
+					{posts &&
+						posts.map((post) => (
+							<Link
+								key={post._id}
+								href={`/post/${post._id}`}
+								className={`border first-letter:uppercase border-white/0 block py-1 px-2 my-1 overflow-hidden rounded-sm cursor-pointer whitespace-nowrap bg-white/10 
 							${postId === post._id ? 'bg-white/20 border-white/100' : ''}`}>
-							{post.topic}
-						</Link>
-					))}
+								{post.topic}
+							</Link>
+						))}
 				</div>
 				<div className='flex items-center h-20 gap-2 px-2 border-t bg-cyan-800 border-t-black/50'>
 					{user ? (
@@ -43,8 +44,11 @@ function AppLayout({ children, availableTokens, posts, postId }) {
 									height={50}
 								/>
 							</div>
-							<div className='flex-1'>
-								<p className='font-bold'>{user.email}</p>
+							<div className='flex flex-col flex-1'>
+								<Link className='font-bold' href='/profile'>
+									{user.email}
+								</Link>
+								<br />
 								<Link className='text-small' href='/api/auth/logout'>
 									Logout
 								</Link>
